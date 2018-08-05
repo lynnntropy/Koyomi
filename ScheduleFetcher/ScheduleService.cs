@@ -30,15 +30,15 @@ namespace ScheduleFetcher
             var tables = doc.DocumentNode.SelectNodes("//table");
             foreach (var table in tables)
             {
-                var title = table.SelectSingleNode(".//td[@class='schedule-page-show']").InnerText;
-
                 if (dayCounter == 7) dayCounter = 0;
                 var dayOfWeek = (DayOfWeek) dayCounter;
 
                 var rows = table.SelectNodes(".//tr");
                 foreach (var row in rows)
                 {
-                    var timeString = table.SelectSingleNode(".//td[@class='schedule-time']").InnerText;
+                    var title = row.SelectSingleNode(".//td[@class='schedule-page-show']").InnerText;
+                    
+                    var timeString = row.SelectSingleNode(".//td[@class='schedule-time']").InnerText;
                     var scheduleTime = DateTimeOffset.Parse($"{timeString} {GetHorribleSubsTimeZoneOffsetString()}");
                     var nextEpisodeDay = GetNextWeekday(dayOfWeek, DateTimeOffset.Now <= scheduleTime);
                 
@@ -53,6 +53,9 @@ namespace ScheduleFetcher
                 
                     scheduleItems.Add(new ScheduleItem(dayOfWeek, title, nextEpisodeTime));                    
                 }
+
+                // Skip any tables after Sunday.
+                if (dayCounter == 0) break;
 
                 dayCounter++;
             }
