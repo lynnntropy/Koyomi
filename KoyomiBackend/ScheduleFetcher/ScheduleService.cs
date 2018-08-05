@@ -36,7 +36,7 @@ namespace ScheduleFetcher
                 var rows = table.SelectNodes(".//tr");
                 foreach (var row in rows)
                 {
-                    var title = row.SelectSingleNode(".//td[@class='schedule-page-show']").InnerText;
+                    var title = HtmlEntity.DeEntitize(row.SelectSingleNode(".//td[@class='schedule-page-show']").InnerText);
                     
                     var timeString = row.SelectSingleNode(".//td[@class='schedule-time']").InnerText;
                     var scheduleTime = DateTimeOffset.Parse($"{timeString} {GetHorribleSubsTimeZoneOffsetString()}");
