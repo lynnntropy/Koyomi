@@ -36,10 +36,21 @@ namespace ScheduleFetcher
                 var rows = table.SelectNodes(".//tr");
                 foreach (var row in rows)
                 {
-                    var title = HtmlEntity.DeEntitize(row.SelectSingleNode(".//td[@class='schedule-page-show']").InnerText);
+                    var title =
+                        HtmlEntity.DeEntitize(row.SelectSingleNode(".//td[@class='schedule-page-show']").InnerText)
+                        .Replace("THE [email\u00A0protected]", "THE iDOLM@STER");
                     
                     var timeString = row.SelectSingleNode(".//td[@class='schedule-time']").InnerText;
                     var scheduleTime = DateTimeOffset.Parse($"{timeString} {GetHorribleSubsTimeZoneOffsetString()}");
+                    scheduleTime = new DateTimeOffset(
+                        DateTimeOffset.Now.Year, 
+                        DateTimeOffset.Now.Month, 
+                        DateTimeOffset.Now.Day, 
+                        scheduleTime.Hour, 
+                        scheduleTime.Minute, 
+                        scheduleTime.Second, 
+                        scheduleTime.Offset);
+                    
                     var nextEpisodeDay = GetNextWeekday(dayOfWeek, DateTimeOffset.Now <= scheduleTime);
                 
                     var nextEpisodeTime = new DateTimeOffset(
