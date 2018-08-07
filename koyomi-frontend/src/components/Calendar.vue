@@ -103,6 +103,7 @@
           border-radius: .25rem;
           box-shadow: 0 .1rem .25rem rgba(0, 0, 0, .075);
           border-right: .25rem solid rgba(0, 0, 0, 0);
+          line-height: 1.3;
           user-select: none;
 
           .title {

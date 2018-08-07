@@ -33,12 +33,6 @@ export default {
     })
   },
 
-  // methods: {
-  //   getItemsForDay: function (dayString) {
-  //     return this.scheduleItems.filter(item => item.dayOfWeek === dayString)
-  //   }
-  // },
-
   computed: {
     selectedItems: function () {
       return this.scheduleItems.filter(item => item.selected === true)
