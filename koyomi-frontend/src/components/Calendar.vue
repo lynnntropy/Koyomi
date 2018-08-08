@@ -1,10 +1,10 @@
 <template>
   <div class="calendar">
-    <div v-for="day in days" :key="day" class="day">
+    <div v-for="day in days" :key="day.id" class="day">
       <h1>
-        {{day}}
+        {{ day.name }}
       </h1>
-      <div v-for="item in getItemsForDay(day)" :key="item.title" class="item" :class="{ 'selected': item.selected }" @click="item.selected = !item.selected">
+      <div v-for="item in getItemsForDay(day.id)" :key="item.title" class="item" :class="{ 'selected': item.selected }" @click="item.selected = !item.selected">
         <div class="title">{{ item.title }}</div>
         <div class="time">{{ item.nextEpisodeTime | moment("h:mm a") }} &ndash; {{ item.nextEpisodeTime | moment("from") }}</div>
       </div>
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+  import moment from 'moment'
+
   export default {
     name: "calendar",
     props: ['scheduleItems'],
@@ -20,20 +22,22 @@
     data () {
       return {
         days: [
-          'Monday',
-          'Tuesday',
-          'Wednesday',
-          'Thursday',
-          'Friday',
-          'Saturday',
-          'Sunday'
+          { name: 'Monday', id: 1 },
+          { name: 'Tuesday', id: 2 },
+          { name: 'Wednesday', id: 3 },
+          { name: 'Thursday', id: 4 },
+          { name: 'Friday', id: 5 },
+          { name: 'Saturday', id: 6 },
+          { name: 'Sunday', id:  7}
         ]
       }
     },
 
     methods: {
-      getItemsForDay: function (dayString) {
-        return this.scheduleItems.filter(item => item.dayOfWeek === dayString)
+      getItemsForDay: function (dayId) {
+        return this.scheduleItems.filter(item => {
+          return moment(item.nextEpisodeTime).isoWeekday() === dayId
+        })
       }
     },
   }
