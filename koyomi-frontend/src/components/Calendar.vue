@@ -48,17 +48,20 @@
 
     @media (max-width: 1919px) {
 
+      background-color: #fff;
+
       h1 {
         margin-top: 1rem;
         margin-bottom: .5rem;
         margin-left: 1rem;
 
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         color: #333;
       }
 
       .item {
         padding: 1rem;
+        border-left: .25rem solid rgba(0, 0, 0, 0);
 
         .title {
           margin-bottom: 0.25rem;
@@ -67,6 +70,10 @@
         .time {
           color: #777;
           font-size: 1rem;
+        }
+
+        &.selected {
+          border-left-color: #8BC34A;
         }
 
         cursor: pointer;

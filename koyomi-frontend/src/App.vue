@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <media :query="{ minWidth: 500 }">
       <desktop-layout
         :schedule-items="scheduleItems"
         :selected-items="selectedItems"
@@ -8,19 +9,34 @@
         @log-in="logIn"
         @log-out="logOut"
         @create-calendar="createKoyomiCalendar" />
+    </media>
+    <media :query="{ maxWidth: 500 }">
+      <mobile-layout
+        :schedule-items="scheduleItems"
+        :selected-items="selectedItems"
+        :logged-in="loggedIn"
+        :calendar-api-state="calendarApiState"
+        @log-in="logIn"
+        @log-out="logOut"
+        @create-calendar="createKoyomiCalendar" />
+    </media>
   </div>
 </template>
 
 <script>
 import '@/assets/styles/main.css'
 import DesktopLayout from './components/layouts/DesktopLayout.vue'
+import MobileLayout from './components/layouts/MobileLayout.vue'
+import Media from 'vue-media'
 import axios from 'axios'
 import moment from 'moment'
 
 export default {
   name: 'app',
   components: {
-    DesktopLayout
+    DesktopLayout,
+    MobileLayout,
+    Media
   },
 
   data () {
