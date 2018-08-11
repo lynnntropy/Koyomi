@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <media :query="{ minWidth: 500 }">
+    <media :query="{ minWidth: 768 }">
       <desktop-layout
         :schedule-items="scheduleItems"
         :selected-items="selectedItems"
@@ -10,7 +10,7 @@
         @log-out="logOut"
         @create-calendar="createKoyomiCalendar" />
     </media>
-    <media :query="{ maxWidth: 500 }">
+    <media :query="{ maxWidth: 768 }">
       <mobile-layout
         :schedule-items="scheduleItems"
         :selected-items="selectedItems"
@@ -49,7 +49,7 @@ export default {
 
   mounted: function () {
 
-    axios.get('http://localhost:5000/api/schedule').then(({data}) => {
+    axios.get('/schedule').then(({data}) => {
       data.forEach(item => item.selected = false)
       this.scheduleItems = data
     })

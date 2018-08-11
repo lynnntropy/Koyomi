@@ -44,7 +44,22 @@
 </script>
 
 <style scoped lang="scss">
+
+  ::-webkit-scrollbar {
+    width: 0.25rem;
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
   .calendar {
+
+    @media (min-width: 768px) {
+      max-height: 100vh;
+      overflow-y: scroll;
+    }
 
     @media (max-width: 1919px) {
 
@@ -77,10 +92,10 @@
         }
 
         cursor: pointer;
-        transition: background-color .2s ease;
+        transition: background-color .1s ease;
 
         &:hover {
-          background-color: #f6f6f6;
+          background-color: #f9f9f9;
         }
 
       }
