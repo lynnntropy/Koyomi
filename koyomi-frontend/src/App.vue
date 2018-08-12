@@ -168,6 +168,11 @@ export default {
     color: #333;
   }
 
+  ::selection {
+    background: #a3e554;
+    color: #fff;
+  }
+
   #app {
     min-height: 100vh;
   }
