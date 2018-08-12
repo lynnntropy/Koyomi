@@ -1,6 +1,9 @@
 <template>
   <div class="header-section">
-    <h1>Koyomi</h1>
+    <h1>
+      Koyomi
+      <font-awesome-icon icon="calendar-alt" />
+    </h1>
     <p>This is an app that allows you to create a Google Calendar with the weekly air times of all the anime you're currently watching.</p>
   </div>
 </template>

@@ -1,10 +1,15 @@
 <template>
   <div class="send-to-google-section">
     <div class="button" @click="$emit('create-calendar')" :class="{ disabled: calendarApiState === 'working' }">
-      {{ calendarApiState === 'working' ? 'Working...' : 'Create calendar '}}
+      <span v-if="calendarApiState !== 'working'">
+        <font-awesome-icon icon="calendar-plus" /> Create calendar
+      </span>
+      <span v-else>
+        <font-awesome-icon icon="clock" /> Working...
+      </span>
     </div>
     <p v-if="showFinishedMessage">
-      Finished! <a href="https://calendar.google.com/" target="_blank" rel="noopener">Open your calendar.</a>
+      Finished! <a href="https://calendar.google.com/" target="_blank" rel="noopener">Take a look at your calendar.</a>
     </p>
   </div>
 </template>
