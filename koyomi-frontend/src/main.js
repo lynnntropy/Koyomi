@@ -7,6 +7,7 @@ import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
 import { faCalendarPlus } from '@fortawesome/free-solid-svg-icons'
 import { faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import VueAnalytics from 'vue-analytics'
 import App from './App.vue'
 import store from './store'
 
@@ -20,6 +21,10 @@ import vueMoment from 'vue-moment'
 Vue.config.productionTip = false
 
 Vue.use(vueMoment)
+
+Vue.use(VueAnalytics, {
+  id: 'UA-25952845-9'
+})
 
 new Vue({
   store,
