@@ -9,7 +9,6 @@ import { faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueAnalytics from 'vue-analytics'
 import App from './App.vue'
-import store from './store'
 
 axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL;
 
@@ -27,6 +26,5 @@ Vue.use(VueAnalytics, {
 })
 
 new Vue({
-  store,
   render: h => h(App)
 }).$mount('#app')
