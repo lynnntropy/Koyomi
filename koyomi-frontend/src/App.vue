@@ -49,6 +49,8 @@ export default {
 
   mounted: function () {
 
+    this.$ga.page('/')
+
     axios.get('/schedule').then(({data}) => {
       data.forEach(item => item.selected = false)
       this.scheduleItems = data
