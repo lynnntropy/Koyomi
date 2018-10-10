@@ -37,7 +37,7 @@ namespace ScheduleFetcher
                 foreach (var row in rows)
                 {
                     var title =
-                        HtmlEntity.DeEntitize(row.SelectSingleNode(".//td[@class='schedule-page-show']").InnerText)
+                        HtmlEntity.DeEntitize(row.SelectSingleNode(".//td[@class='schedule-page-show' or @class='schedule-show']").InnerText)
                         .Replace("THE [email\u00A0protected]", "THE iDOLM@STER");
                     
                     var timeString = row.SelectSingleNode(".//td[@class='schedule-time']").InnerText;
